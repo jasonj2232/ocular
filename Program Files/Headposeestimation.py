@@ -52,6 +52,7 @@ while cap.isOpened():
 
     if results.multi_face_landmarks:
         for face_landmarks in results.multi_face_landmarks:
+            print(face_landmarks.landmark)
             for idx, lm in enumerate(face_landmarks.landmark):
                 if idx == 33 or idx == 263 or idx == 1 or idx == 61 or idx == 291 or idx == 199:
                     if idx == 1:

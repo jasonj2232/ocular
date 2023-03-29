@@ -5,7 +5,11 @@ import time
 from pynput.keyboard import Key, Controller
 import gesture as ges
 
-interestedLandmarks = [33, 263, 1, 61, 291, 199]
+# Last 4 values in the array are eye related
+# Left Eye top = 386; Left Eye bot = 374; Right Eye top = 159; Right Eye bot = 145
+interestedLandmarks = [33, 263, 1, 61, 291, 199, 159, 145, 386, 374] 
+leftEye = [386, 374]
+rightEye = [159, 145]
 
 mp_face_mesh = mp.solutions.face_mesh
 face_mesh = mp_face_mesh.FaceMesh(min_detection_confidence=0.5, min_tracking_confidence=0.5)

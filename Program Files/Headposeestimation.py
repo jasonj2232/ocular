@@ -59,6 +59,8 @@ while cap.isOpened():
     img_h, img_w, img_c = image.shape
     face_3d = []
     face_2d = []
+    rightEye_2d_list = []
+    leftEye_2d_list = []
 
     if results.multi_face_landmarks:
         for face_landmarks in results.multi_face_landmarks:
@@ -67,6 +69,16 @@ while cap.isOpened():
                     if idx == 1:
                         nose_2d = (lm.x * img_w, lm.y * img_h)
                         nose_3d = (lm.x * img_w, lm.y * img_h, lm.z * 3000)
+                    
+                    if idx == 159 or idx == 145:
+                        rightEye_2d = (lm.x * img_w, lm.y * img_h)
+                        rightEye_2d_list.append(rightEye_2d)
+                        #rightEye_3d = (lm.x * img_w, lm.y * img_h, lm.z * 3000)
+
+                    if idx == 386 or idx == 374:
+                        leftEye_2d = (lm.x * img_w, lm.y * img_h)
+                        leftEye_2d_list.append(leftEye_2d)
+                        #leftEye_3d = (lm.x * img_w, lm.y * img_h, lm.z * 3000)
 
                     x, y = int(lm.x * img_w), int(lm.y * img_h)
 
@@ -106,7 +118,17 @@ while cap.isOpened():
             y = angles[1] * 360
             z = angles[2] * 360
             
-          
+            rightEyeDist = euclideanDistance(rightEye_2d_list[0], rightEye_2d_list[1])
+            leftEyeDist = euclideanDistance(leftEye_2d_list[0], leftEye_2d_list[1])
+
+            print(rightEyeDist)
+            print(leftEyeDist)
+
+            if leftEyeDist < 5:
+                keyboard.press(Key.left)
+            
+            if rightEyeDist < 5:
+                keyboard.press(Key.right)
 
             # See where the user's head tilting
             

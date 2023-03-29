@@ -2,8 +2,17 @@ import cv2
 import mediapipe as mp
 import numpy as np
 import time
+import math
 from pynput.keyboard import Key, Controller
 import gesture as ges
+
+
+#Function to find the Euclidean Distance between two points
+def euclideanDistance(firstPoint, secondPoint):
+    pointOneX, pointOneY = firstPoint
+    pointTwoX, pointTwoY = secondPoint
+    result = math.sqrt(((pointOneX - pointTwoX)**2) + ((pointOneY - pointTwoY)**2))
+    return result
 
 # Last 4 values in the array are eye related
 # Left Eye top = 386; Left Eye bot = 374; Right Eye top = 159; Right Eye bot = 145
@@ -54,7 +63,7 @@ while cap.isOpened():
     if results.multi_face_landmarks:
         for face_landmarks in results.multi_face_landmarks:
             for idx, lm in enumerate(face_landmarks.landmark):
-                if idx :
+                if idx in interestedLandmarks:
                     if idx == 1:
                         nose_2d = (lm.x * img_w, lm.y * img_h)
                         nose_3d = (lm.x * img_w, lm.y * img_h, lm.z * 3000)

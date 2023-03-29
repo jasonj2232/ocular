@@ -5,10 +5,7 @@ import time
 from pynput.keyboard import Key, Controller
 import gesture as ges
 
-
-
-
-
+interestedLandmarks = [33, 263, 1, 61, 291, 199]
 
 mp_face_mesh = mp.solutions.face_mesh
 face_mesh = mp_face_mesh.FaceMesh(min_detection_confidence=0.5, min_tracking_confidence=0.5)
@@ -53,7 +50,7 @@ while cap.isOpened():
     if results.multi_face_landmarks:
         for face_landmarks in results.multi_face_landmarks:
             for idx, lm in enumerate(face_landmarks.landmark):
-                if idx == 33 or idx == 263 or idx == 1 or idx == 61 or idx == 291 or idx == 199:
+                if idx :
                     if idx == 1:
                         nose_2d = (lm.x * img_w, lm.y * img_h)
                         nose_3d = (lm.x * img_w, lm.y * img_h, lm.z * 3000)

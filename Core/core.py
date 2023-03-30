@@ -3,7 +3,9 @@ import mediapipe as mp
 import numpy as np
 import gesture
 import head
+
 import blinkDetector
+import threading
 
 #Initialising required objects
 mp_face_mesh = mp.solutions.face_mesh
@@ -72,11 +74,12 @@ while cap.isOpened():
 
             x, y, z = head.tracking(img_w, img_h, face_2d, face_3d)
 
-            gesture.gestures(x, y, z)
 
-            noOfBlinks = blinkDetector.noOfBlinks(leftEye_2d_list, rightEye_2d_list)
-            print(noOfBlinks)
-            gesture.click(noOfBlinks[0])
+            #noOfBlinks = blinkDetector.noOfBlinks(leftEye_2d_list, rightEye_2d_list)
+            #print(noOfBlinks)
+            noOfBlinks = (0, 0)
+
+            gesture.inputParams(x, y, z, noOfBlinks[0])
 
     
     if cv2.waitKey(5) & 0xFF == 27:

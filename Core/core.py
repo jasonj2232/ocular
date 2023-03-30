@@ -75,6 +75,9 @@ while cap.isOpened():
             gesture.gestures(x, y, z)
 
             noOfBlinks = blinkDetector.noOfBlinks(leftEye_2d_list, rightEye_2d_list)
+            print(noOfBlinks)
+            gesture.click(noOfBlinks[0])
+
     
     if cv2.waitKey(5) & 0xFF == 27:
         break

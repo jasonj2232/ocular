@@ -1,4 +1,5 @@
 from pynput.keyboard import Key, Controller
+import pyautogui
 keyboard = Controller()
 
 def gestures(x, y, z):
@@ -16,3 +17,12 @@ def gestures(x, y, z):
         keyboard.press(Key.up)
     else:
         text = "Forward"
+
+def click(noOfClicks):
+    if noOfClicks==1:
+        pyautogui.click()
+
+    if noOfClicks==2:
+        pyautogui.rightClick()
+
+

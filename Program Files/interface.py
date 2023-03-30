@@ -1,26 +1,19 @@
 from tkinter import *
 from pynput.keyboard import Key, Controller
+import core
+
+
+def main():    
+    
 
 
 
-# # Type a lower case A; this will work even if no key on the
-# # physical keyboard is labelled 'A'
-# keyboard.press('a')
-# keyboard.release('a')
 
-# # Type two upper case As
-# keyboard.press('A')
-# keyboard.release('A')
-# with keyboard.pressed(Key.shift):
-#     keyboard.press('a')
-#     keyboard.release('a')
-
-# # Type 'Hello World' using the shortcut type method
-# keyboard.type('Hello World')
-def main():       
-    window =Tk()
+    window =Tk()   
     window.title("HCI MK1")
     window.geometry('1920x1080')
+
+    
 
     #logo
     img1=PhotoImage(file='team_logo.png')
@@ -38,33 +31,45 @@ def main():
     int.place(x=50, y=250)
 
     # #options
-    def gotoDesktop():
-        print("hello")
-        keyboard = Controller()
+
+    def scroll(flag):
+        flag=True
+        while flag:
+            core.core(1)
+    
+            
         
-        keyboard.press(Key.cmd_l)
-        keyboard.press('d')
-        keyboard.release('d')
-        keyboard.release(Key.cmd_l)
             
     
 
     img4=PhotoImage(file='option1.png')
-    op1=Button(window,image=img4,borderwidth=0,bg='black',command=gotoDesktop)
+    op1=Button(window,image=img4,borderwidth=0,bg='black',command=scroll(True))
+     
     op1.place(x=650,y=350)
 
     img5=PhotoImage(file='option2.png')
     op2=Button(window,image=img5,borderwidth=0,bg='black')
-    op2.place(x=655,y=450)
+    op2.place(x=650,y=450)
+
+    img6=PhotoImage(file='option3.png')
+    op3=Button(window,image=img6,borderwidth=0,bg='black')
+    op3.place(x=650,y=550)
+
+   
     
 
 
     
     
     window.configure(bg='black');
+    
 
     
     window.mainloop()
+    
+
+
+     
 
 
 
